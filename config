@@ -1,0 +1,4 @@
+NAME=omega_i_series
+PORT=5008
+HOST=xf27id1-ioc1
+USER=softioc-hex

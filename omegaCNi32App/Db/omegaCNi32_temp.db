@@ -1,0 +1,133 @@
+# Read temperature
+record(ai, "$(Sys)$(Dev)T-I")
+{
+	field(DTYP, "stream")
+	field(DESC, "Process Temperature")
+	field(INP, "@omega-CNi32.proto ReadX($(Chan),01) $(PORT)")
+	field(EGU,  "C")
+	field(SCAN, "$(PERIOD=2) second")
+	field(HIHI, "35")
+	field(HIGH, "30")
+	field(LOLO, "10")
+	field(LOW,  "15")
+	field(HOPR, "35")
+	field(LOPR, "15")
+	field(PREC, "1")
+	field(HHSV, "MAJOR")
+	field(HSV,  "MINOR")
+	field(LLSV, "MINOR")
+	field(LSV,  "MINOR")
+
+	info(autosaveFields, "LOLO LOW HIGH HIHI LLSV LSV HSV HHSV SCAN")
+}
+
+record(ai, "$(Sys)$(Dev)T:SP1-RB")
+{
+	field(DTYP, "stream")
+	field(DESC, "Setpoint Temperature Readback")
+	field(INP, "@omega-CNi32.proto ReadSP($(Chan),01) $(PORT)")
+	field(EGU,  "C")
+	field(LINR, "SLOPE")
+	field(ESLO, "0.1")
+	field(PREC, "1")
+	field(SCAN, "10 second")
+	field(FLNK, "$(Sys)$(Dev)T:GainPB-RB")
+}
+
+record(ao, "$(Sys)$(Dev)T:SP1-SP")
+{
+	field(DTYP, "stream")
+	field(DESC, "Setpoint Temperature")
+	field(OUT, "@omega-CNi32.proto WriteSP($(Chan),01) $(PORT)")
+	field(EGU,  "C")
+	field(LINR, "SLOPE")
+	field(ESLO, "0.1")
+	field(PREC, "1")
+	field(VAL, "20")
+
+	info(autosaveFields, "VAL")
+}
+
+record(longin, "$(Sys)$(Dev)T:GainPB-RB")
+{
+	field(DTYP, "stream")
+	field(DESC, "Proportional Band 1")
+	field(INP, "@omega-CNi32.proto ReadPID($(Chan),17) $(PORT)")
+	field(EGU,  "Counts")
+#	field(SCAN, "10 second")
+	field(FLNK, "$(Sys)$(Dev)T:GainI-RB")
+}
+
+record(longin, "$(Sys)$(Dev)T:GainI-RB")
+{
+	field(DTYP, "stream")
+	field(DESC, "Integral/Reset 1")
+	field(INP, "@omega-CNi32.proto ReadPID($(Chan),18) $(PORT)")
+	field(EGU,  "Seconds")
+#	field(SCAN, "10 second")
+	field(FLNK, "$(Sys)$(Dev)T:GainD-RB")
+}
+
+record(longin, "$(Sys)$(Dev)T:GainD-RB")
+{
+	field(DTYP, "stream")
+	field(DESC, "Derivative/Rate 1")
+	field(INP, "@omega-CNi32.proto ReadPID($(Chan),19) $(PORT)")
+	field(EGU,  "Seconds")
+#	field(SCAN, "10 second")
+}
+
+record(longout, "$(Sys)$(Dev)T:GainPB-SP")
+{
+	field(DTYP, "stream")
+	field(DESC, "Proportional Band 1")
+	field(OUT, "@omega-CNi32.proto WritePID($(Chan),17) $(PORT)")
+	field(EGU,  "Counts")
+	field(DRVL, "0")
+	field(DRVH, "9999")
+
+	info(autosaveFields_pass0, "VAL")
+}
+
+record(longout, "$(Sys)$(Dev)T:GainI-SP")
+{
+	field(DTYP, "stream")
+	field(DESC, "Integral/Reset 1")
+	field(OUT, "@omega-CNi32.proto WritePID($(Chan),18) $(PORT)")
+	field(EGU,  "Seconds")
+	field(DRVL, "0")
+	field(DRVH, "3999")
+	field(VAL, "50")
+
+	info(autosaveFields_pass0, "VAL")
+}
+
+record(longout, "$(Sys)$(Dev)T:GainD-SP")
+{
+	field(DTYP, "stream")
+	field(DESC, "Derivative/Rate 1")
+	field(OUT, "@omega-CNi32.proto WritePID($(Chan),19) $(PORT)")
+	field(EGU,  "Seconds")
+	field(DRVL, "0")
+	field(DRVH, "3999")
+
+	info(autosaveFields_pass0, "VAL")
+}
+
+record(bo, "$(Sys)$(Dev)T:Init-Cmd")
+{
+        field(DTYP, "stream")
+        field(DESC, "Init 1")
+        field(OUT, "@omega-CNi32.proto init($(Chan)) $(PORT)")
+	field(PINI, "1")
+}
+
+record(bo, "$(Sys)$(Dev)T:Reset-Cmd")
+{
+        field(DTYP, "stream")
+        field(DESC, "Reset")
+        field(OUT, "@omega-CNi32.proto reset($(Chan)) $(PORT)")
+}
+
+
+
