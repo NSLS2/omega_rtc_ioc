@@ -1,6 +1,6 @@
-as/req/
-as/save/
+/as/req/
+/as/save/
 .vscode/
 records.dbl
-config
+/config
 
