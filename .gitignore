@@ -3,4 +3,6 @@
 .vscode/
 records.dbl
 /config
+*.swo
+*.swp
 
