@@ -3,10 +3,12 @@
 ## You may have to change omegaCNi32 to something else
 ## everywhere it appears in this file
 
+<xf31id1-ioc1-netsetup.cmd
+
 epicsEnvSet("EPICS_BASE","/usr/lib/epics")
-epicsEnvSet("EPICS_CA_AUTO_ADDR_LIST","NO")
+#epicsEnvSet("EPICS_CA_AUTO_ADDR_LIST","NO")
 #epicsEnvSet("EPICS_CA_ADDR_LIST","10.66.210.255")
-epicsEnvSet("EPICS_CA_ADDR_LIST","192.168.127.255")
+#epicsEnvSet("EPICS_CA_ADDR_LIST","192.168.127.255")
 epicsEnvSet("SYS","Test-CT")
 epicsEnvSet("IOC_PREFIX","$(SYS){IOC:RTC}")
 epicsEnvSet("TOP","/epics/iocs/omega_rtc_ioc")
@@ -22,7 +24,7 @@ omegaCNi32_registerRecordDeviceDriver(pdbbase)
 epicsEnvSet ("STREAM_PROTOCOL_PATH", "protocols")
 
 #drvAsynIPPortConfigure("rga1-rtc1-eth","192.168.1.200:2000")
-drvAsynIPPortConfigure("rga1-rtc1-eth","192.168.1.201:4004")
+drvAsynIPPortConfigure("rga1-rtc1-eth", "xf31id1-lab3-tsrv1:4001")
 
 #asynSetTraceMask("rga1-rtc1-eth",0,0x4)
 #asynSetTraceIOMask("rga1-rtc1-eth",0,0x2)
