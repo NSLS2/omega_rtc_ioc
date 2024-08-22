@@ -11,8 +11,9 @@
 
 epicsEnvSet("TOP","/epics/iocs/omega_rtc_ioc")
 epicsEnvSet("EPICS_BASE","/usr/lib/epics")
+
+# IOC-specific variables
 epicsEnvSet("SYS","Test-CT")
-epicsEnvSet("DEV","{RG:T}")
 epicsEnvSet("IOC_PREFIX","$(SYS){IOC:RTC}")
 
 cd ${TOP}
@@ -25,11 +26,16 @@ omegaCNi32_registerRecordDeviceDriver(pdbbase)
 
 epicsEnvSet ("STREAM_PROTOCOL_PATH", "protocols")
 
-drvAsynIPPortConfigure("rga1-rtc1-eth", "xf31id1-lab3-tsrv1:4001")
+# Controller-specific variables
+epicsEnvSet("PORT","tsrvx-px")
+epicsEnvSet("DEV","{RG:T}")
+epicsEnvSet("IP","xf31id1-lab3-tsrv1:4001")
+
+drvAsynIPPortConfigure("$(PORT)", "$(IP)")
 
 ## Load record instances
-dbLoadRecords("db/omegaCNi32_temp.db","Sys=$(SYS),Dev=$(DEV),Chan=,PORT=rga1-rtc1-eth")
-dbLoadRecords("db/asynRecord.db", "P=$(SYS),R=$(DEV)Asyn,PORT=rga1-rtc1-eth,ADDR=0,IMAX=256,OMAX=256")
+dbLoadRecords("db/omegaCNi32_temp.db","Sys=$(SYS),Dev=$(DEV),Chan=,PORT=$(PORT)")
+dbLoadRecords("db/asynRecord.db","P=$(SYS),R=$(DEV)Asyn,PORT=$(PORT),ADDR=0,IMAX=256,OMAX=256")
 
 ## autosave/restore machinery
 save_restoreSet_Debug(0)
