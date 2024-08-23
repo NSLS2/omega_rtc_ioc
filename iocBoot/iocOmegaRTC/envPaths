@@ -1,0 +1,4 @@
+epicsEnvSet("IOC","iocOmegaRTC")
+epicsEnvSet("TOP","/epics/iocs/omega_rtc_ioc")
+epicsEnvSet("EPICS_BASE","/usr/lib/epics")
+epicsEnvSet("SUPPORT","/usr/lib/epics")

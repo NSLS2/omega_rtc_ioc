@@ -5,4 +5,7 @@ records.dbl
 /config
 *.swo
 *.swp
-
+O.*
+db/
+bin/
+dbd/
