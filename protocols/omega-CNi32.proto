@@ -26,8 +26,8 @@ init {
 	# Set Alarm2 low point to 10degC
 	out "*\$1W15200064";
 	in "\$1W15";
-	# Set Alarm2 highpoint to 30degC
-	out "*\$1W1620012C";
+	# Set Alarm2 highpoint to setpoint value
+	out "*\$1W162%(\$2T:SP1-SP.VAL)05X";
 	in "\$1W16";
 	# Set LEDs 
 	out "*\$1W1121";
