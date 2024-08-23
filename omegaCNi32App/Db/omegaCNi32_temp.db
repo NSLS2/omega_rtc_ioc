@@ -6,11 +6,11 @@ record(ai, "$(Sys)$(Dev)T-I")
 	field(INP, "@omega-CNi32.proto ReadX($(Chan),01) $(PORT)")
 	field(EGU,  "C")
 	field(SCAN, "$(PERIOD=2) second")
-	field(HIHI, "35")
-	field(HIGH, "30")
+	field(HIHI, "$(HIHI=30)")
+	field(HIGH, "$(HIGH=25)")
 	field(LOLO, "10")
 	field(LOW,  "15")
-	field(HOPR, "35")
+	field(HOPR, "$(HIGH=25)")
 	field(LOPR, "15")
 	field(PREC, "1")
 	field(HHSV, "MAJOR")
@@ -21,6 +21,7 @@ record(ai, "$(Sys)$(Dev)T-I")
 	info(autosaveFields, "LOLO LOW HIGH HIHI LLSV LSV HSV HHSV SCAN")
 }
 
+# Read setpoint
 record(ai, "$(Sys)$(Dev)T:SP1-RB")
 {
 	field(DTYP, "stream")
@@ -34,6 +35,7 @@ record(ai, "$(Sys)$(Dev)T:SP1-RB")
 	field(FLNK, "$(Sys)$(Dev)T:GainPB-RB")
 }
 
+# Set setpoint
 record(ao, "$(Sys)$(Dev)T:SP1-SP")
 {
 	field(DTYP, "stream")
@@ -43,9 +45,17 @@ record(ao, "$(Sys)$(Dev)T:SP1-SP")
 	field(LINR, "SLOPE")
 	field(ESLO, "0.1")
 	field(PREC, "1")
-	field(VAL, "20")
-
+	field(VAL,  "25")
+	field(PINI, "1")
+	field(FLNK, "$(Sys)$(Dev)T:DB-FOut_")
 	info(autosaveFields, "VAL")
+}
+
+record(dfanout, "$(Sys)$(Dev)T:DB-FOut_")
+{
+	field(DESC, "Setpoint fanout")
+	field(DOL,  "$(Sys)$(Dev)T:SP1-SP")
+        field(OUTA, "$(Sys)$(Dev)T-I.HIHI")
 }
 
 record(longin, "$(Sys)$(Dev)T:GainPB-RB")
@@ -117,8 +127,8 @@ record(longout, "$(Sys)$(Dev)T:GainD-SP")
 record(bo, "$(Sys)$(Dev)T:Init-Cmd")
 {
         field(DTYP, "stream")
-        field(DESC, "Init 1")
-        field(OUT, "@omega-CNi32.proto init($(Chan)) $(PORT)")
+        field(DESC, "Init")
+        field(OUT, "@omega-CNi32.proto init($(Chan),$(Sys)$(Dev)) $(PORT)")
 	field(PINI, "1")
 }
 
