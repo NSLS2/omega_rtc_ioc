@@ -45,18 +45,9 @@ record(ao, "$(Sys)$(Dev)T:SP1-SP")
 	field(LINR, "SLOPE")
 	field(ESLO, "0.1")
 	field(PREC, "1")
-	field(VAL,  "25")
+	field(VAL,  "20")
 	field(PINI, "1")
-	field(FLNK, "$(Sys)$(Dev)T:DB-DFOut_")
 	info(autosaveFields, "VAL")
-}
-
-record(dfanout, "$(Sys)$(Dev)T:DB-DFOut_")
-{
-	field(DESC, "Setpoint fanout")
-	field(OMSL, "closed_loop")
-	field(DOL,  "$(Sys)$(Dev)T:SP1-SP")
-        field(OUTA, "$(Sys)$(Dev)T-I.HIHI")
 }
 
 record(longin, "$(Sys)$(Dev)T:GainPB-RB")
