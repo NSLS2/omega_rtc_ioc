@@ -50,12 +50,14 @@ record(ao, "$(Sys)$(Dev)T:SP1-SP")
 	info(autosaveFields, "VAL")
 }
 
-record(longin, "$(Sys)$(Dev)T:GainPB-RB")
+record(ai, "$(Sys)$(Dev)T:GainPB-RB")
 {
 	field(DTYP, "stream")
 	field(DESC, "Proportional Band 1")
 	field(INP, "@omega-CNi32.proto ReadPID($(Chan),17) $(PORT)")
 	field(EGU,  "Counts")
+	field(LINR, "SLOPE")
+	field(ESLO, "0.1")
 	field(FLNK, "$(Sys)$(Dev)T:GainI-RB")
 }
 
@@ -65,27 +67,31 @@ record(longin, "$(Sys)$(Dev)T:GainI-RB")
 	field(DESC, "Integral/Reset 1")
 	field(INP, "@omega-CNi32.proto ReadPID($(Chan),18) $(PORT)")
 	field(EGU,  "Seconds")
-#	field(SCAN, "10 second")
 	field(FLNK, "$(Sys)$(Dev)T:GainD-RB")
 }
 
-record(longin, "$(Sys)$(Dev)T:GainD-RB")
+record(ai, "$(Sys)$(Dev)T:GainD-RB")
 {
 	field(DTYP, "stream")
 	field(DESC, "Derivative/Rate 1")
 	field(INP, "@omega-CNi32.proto ReadPID($(Chan),19) $(PORT)")
 	field(EGU,  "Seconds")
-#	field(SCAN, "10 second")
+	field(LINR, "SLOPE")
+	field(ESLO, "0.1")
 }
 
-record(longout, "$(Sys)$(Dev)T:GainPB-SP")
+record(ao, "$(Sys)$(Dev)T:GainPB-SP")
 {
 	field(DTYP, "stream")
 	field(DESC, "Proportional Band 1")
 	field(OUT, "@omega-CNi32.proto WritePID($(Chan),17) $(PORT)")
 	field(EGU,  "Counts")
 	field(DRVL, "0")
-	field(DRVH, "9999")
+	field(DRVH, "999.9")
+	field(LINR, "SLOPE")
+	field(ESLO, "0.1")
+	field(VAL,  "$(PVAL=20)")
+	field(PINI, "1")
 
 	info(autosaveFields_pass0, "VAL")
 }
@@ -98,19 +104,24 @@ record(longout, "$(Sys)$(Dev)T:GainI-SP")
 	field(EGU,  "Seconds")
 	field(DRVL, "0")
 	field(DRVH, "3999")
-	field(VAL, "50")
-
+	field(VAL, "$(IVAL=50)")
+	field(PINI, "1")
+	
 	info(autosaveFields_pass0, "VAL")
 }
 
-record(longout, "$(Sys)$(Dev)T:GainD-SP")
+record(ao, "$(Sys)$(Dev)T:GainD-SP")
 {
 	field(DTYP, "stream")
 	field(DESC, "Derivative/Rate 1")
 	field(OUT, "@omega-CNi32.proto WritePID($(Chan),19) $(PORT)")
 	field(EGU,  "Seconds")
 	field(DRVL, "0")
-	field(DRVH, "3999")
+	field(LINR, "SLOPE")
+	field(ESLO, "0.1")
+	field(DRVH, "399.9")
+	field(VAL,  "$(DVAL=0)")
+	field(PINI, "1")
 
 	info(autosaveFields_pass0, "VAL")
 }
