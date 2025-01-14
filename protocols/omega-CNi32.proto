@@ -20,16 +20,16 @@ init {
 	# Time proportional PID
 	out "*\$1W0C41";
 	in "\$1W0C"; 
-	# Setup Alarm 2 (Relay)
-	out "*\$1W0A89";
+	# Setup Alarm 2 (Relay), current retransmission, active Hi/Lo,N.C.,unlatch, absolute
+	out "*\$1W0AA9";
 	in "\$1W0A";
-	# Set Alarm2 low point to 10degC
-	out "*\$1W15200064";
+	# Set Alarm2 low point to 15degC
+	out "*\$1W15200096";
 	in "\$1W15";
-	# Set Alarm2 highpoint to setpoint value
+	# Set Alarm2 high point to setpoint value, default 30deC
 	out "*\$1W162%(\$2T:SP1-SP.VAL)05X";
 	in "\$1W16";
-	# Set LEDs 
+	# Set LEDs, Alarm2 color red, Alarm1 color amber, normal color green, 
 	out "*\$1W1121";
 	in "\$1W11";
 	# Reset Controller
