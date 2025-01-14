@@ -35,7 +35,7 @@ record(ai, "$(Sys)$(Dev)T:SP1-RB")
 	field(FLNK, "$(Sys)$(Dev)T:GainPB-RB")
 }
 
-# Set setpoint
+# Set setpoint, default value is 20C
 record(ao, "$(Sys)$(Dev)T:SP1-SP")
 {
 	field(DTYP, "stream")
@@ -90,7 +90,7 @@ record(ao, "$(Sys)$(Dev)T:GainPB-SP")
 	field(DRVH, "999.9")
 	field(LINR, "SLOPE")
 	field(ESLO, "0.1")
-	field(VAL,  "$(PVAL=20)")
+	field(VAL,  "$(PVAL=2)")
 	field(PINI, "1")
 
 	info(autosaveFields_pass0, "VAL")
