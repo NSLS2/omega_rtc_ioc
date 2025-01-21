@@ -5,7 +5,7 @@ record(ai, "$(Sys)$(Dev)T-I")
 	field(DESC, "Process Temperature")
 	field(INP,  "@omega-CNi32.proto ReadX($(Chan),01) $(PORT)")
 	field(EGU,  "C")
-	field(SCAN, $(PERIOD="2 second"))
+	field(SCAN, "$(PERIOD=2) second")
 	field(HIHI, $(HIHI="30"))
 	field(HIGH, $(HIGH="27"))
 	field(LOLO, $(LOLO="15"))
@@ -46,7 +46,6 @@ record(ao, "$(Sys)$(Dev)T:SP1-SP")
 	field(ESLO, "0.1")
 	field(PREC, "1")
 	field(VAL,  "20")
-	field(PINI, "1")
 	info(autosaveFields, "VAL")
 }
 
@@ -94,7 +93,6 @@ record(ao, "$(Sys)$(Dev)T:GainPB-SP")
 	field(ESLO, "0.1")
 	field(PREC, "1")
 	field(VAL,  $(PVAL="2.0"))
-	field(PINI, "1")
 
 	info(autosaveFields_pass0, "VAL")
 }
@@ -108,8 +106,6 @@ record(longout, "$(Sys)$(Dev)T:GainI-SP")
 	field(DRVL, "0")
 	field(DRVH, "3999")
 	field(VAL,  $(IVAL="50"))
-	field(PINI, "1")
-	
 	info(autosaveFields_pass0, "VAL")
 }
 
@@ -124,7 +120,6 @@ record(ao, "$(Sys)$(Dev)T:GainD-SP")
 	field(ESLO, "0.1")
 	field(DRVH, "399.9")
 	field(VAL,  $(DVAL="0"))
-	field(PINI, "1")
 	field(PREC, "1")
 
 	info(autosaveFields_pass0, "VAL")
@@ -145,5 +140,21 @@ record(bo, "$(Sys)$(Dev)T:Reset-Cmd")
         field(OUT,  "@omega-CNi32.proto reset($(Chan)) $(PORT)")
 }
 
-
-
+record(seq, "$(Sys)$(Dev)Init-Seq_")
+{
+        field(DESC, "Init Sequence")
+        field(SELM, "All")
+        field(DO1,  "20")
+        field(DO2,  $(PVAL="2"))
+        field(DO3,  $(IVAL="50"))
+        field(DO4,  $(DVAL="0"))
+        field(LNK1, "$(Sys)$(Dev)T:SP1-SP PP")
+        field(LNK2, "$(Sys)$(Dev)T:GainPB-SP PP")
+        field(LNK3, "$(Sys)$(Dev)T:GainI-SP PP")
+        field(LNK4, "$(Sys)$(Dev)T:GainD-SP PP")
+        field(DLY1, "1")
+        field(DLY2, "2")
+        field(DLY3, "3")
+        field(DLY4, "4")
+        field(PINI, "1")
+}
