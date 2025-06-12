@@ -24,11 +24,12 @@ omegaCNi32_DBD += devIocStats.dbd
 omegaCNi32_DBD += system.dbd
 omegaCNi32_DBD += caPutLog.dbd
 omegaCNi32_DBD += asSupport.dbd
+omegaCNi32_DBD += reccaster.dbd
 
 # Include dbd files from all support applications:
 
 # Add all the support libraries needed by this IOC
-omegaCNi32_LIBS += asyn calc stream autosave devIocStats caPutLog
+omegaCNi32_LIBS += asyn calc stream autosave devIocStats caPutLog reccaster
 
 # omegaCNi32_registerRecordDeviceDriver.cpp derives from omegaCNi32.dbd
 omegaCNi32_SRCS += omegaCNi32_registerRecordDeviceDriver.cpp
