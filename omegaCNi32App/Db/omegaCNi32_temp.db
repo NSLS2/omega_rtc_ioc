@@ -92,7 +92,7 @@ record(ao, "$(Sys)$(Dev)T:GainPB-SP")
 	field(LINR, "SLOPE")
 	field(ESLO, "0.1")
 	field(PREC, "1")
-	field(VAL,  $(PVAL="2.0"))
+	field(VAL,  $(PVAL="9.0"))
 
 	info(autosaveFields_pass0, "VAL")
 }
@@ -105,7 +105,7 @@ record(longout, "$(Sys)$(Dev)T:GainI-SP")
 	field(EGU,  "Seconds")
 	field(DRVL, "0")
 	field(DRVH, "3999")
-	field(VAL,  $(IVAL="50"))
+	field(VAL,  $(IVAL="90"))
 	info(autosaveFields_pass0, "VAL")
 }
 
