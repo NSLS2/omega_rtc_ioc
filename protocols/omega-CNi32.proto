@@ -6,7 +6,7 @@ ReadTimeout = 100;
 WriteTimeout = 100;
 ExtraInput = Ignore;
 
-init {
+initConfig {
 	# Set to FFFF.F Precision with a Filtering of 1
 	out "*\$1W0802";
 	in  "\$1W08";

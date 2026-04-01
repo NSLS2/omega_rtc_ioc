@@ -129,7 +129,7 @@ record(bo, "$(Sys)$(Dev)T:Init-Cmd")
 {
         field(DTYP, "stream")
         field(DESC, "Init")
-        field(OUT,  "@omega-CNi32.proto init($(Chan),$(Sys)$(Dev)) $(PORT)")
+        field(OUT,  "@omega-CNi32.proto initConfig($(Chan),$(Sys)$(Dev)) $(PORT)")
 	field(PINI, "1")
 }
 
