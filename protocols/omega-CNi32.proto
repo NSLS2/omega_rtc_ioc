@@ -6,7 +6,17 @@ ReadTimeout = 100;
 WriteTimeout = 100;
 ExtraInput = Ignore;
 
-init {
+initComm {
+	# Enable line feed, ECHO for RS232 0x16 or RS485 0x1E
+	out "*\$1W1F\$2"; 
+	in  "\$1W1F";
+	# Reset Controller
+	out "*\$1Z02";
+	in "\$1Z02";
+	wait 2000;
+}
+
+initConfig {
 	# Set to FFFF.F Precision with a Filtering of 1
 	out "*\$1W0802";
 	in  "\$1W08";
