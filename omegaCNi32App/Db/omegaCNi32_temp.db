@@ -130,7 +130,7 @@ record(bo, "$(Sys)$(Dev)T:Init-Cmd")
         field(DTYP, "stream")
         field(DESC, "Init")
         field(OUT,  "@omega-CNi32.proto initConfig($(Chan),$(Sys)$(Dev)) $(PORT)")
-	field(PINI, "1")
+	field(PINI, "0")
 }
 
 record(bo, "$(Sys)$(Dev)T:Reset-Cmd")
@@ -155,5 +155,5 @@ record(seq, "$(Sys)$(Dev)Init-Seq_")
         field(DLY2, "5")
         field(DLY3, "5")
 	field(DLY4, "2")
-        field(PINI, "1")
+        field(PINI, "0")
 }
